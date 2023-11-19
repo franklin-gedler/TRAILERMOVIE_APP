@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+psycopg2-binary
+Flask-WTF
+trycourier
+email_validator

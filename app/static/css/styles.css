@@ -1,0 +1,216 @@
+/* styles base.html */
+    body {
+        background-color: #194457 !important;
+        /*display: flex !important;
+        flex-direction: column !important;*/
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 1.3rem !important;
+    }
+
+    .active {
+        color: #00ffd0 !important;
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #00ffd0 !important;
+    }
+
+    .img-fluid {
+        max-width: 210px !important; 
+        height: auto !important;
+        border-radius: 10px !important;
+    }
+
+    .social-icons img {
+        max-width: 30px;
+        /*margin-right: 10px;*/
+    }
+
+    .hidden-footer {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease; /* Agregar una transición suave para la animación */
+    }
+    /*
+    #movies-container #series-container {
+        max-width: 1465px !important;
+        margin: 0 auto;  Para centrar el contenedor 
+    }
+    */
+/* styles base.html */
+
+/* styles image, video-pop, tooltips */
+    .play-icon-container {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        width: 50px; /* Ajusta el tamaño del círculo según tus necesidades */
+        height: 50px; /* Ajusta el tamaño del círculo según tus necesidades */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+    }
+
+    .play-icon-container:hover {
+        border: 1px solid white;
+        box-sizing: border-box; 
+    }
+
+    .img-movie-serie {
+        z-index: 0;
+        width: 222px;
+        height: 296px;
+        aspect-ratio: 3 / 4;
+    }
+
+    .img-movie-serie i {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .play-icon {
+        color: white;
+        cursor: pointer;
+    }
+
+    .video-popup {
+        display: none; /* Cambiamos display a flex para centrar elementos */
+        position: fixed; /* Cambiamos a position: fixed para asegurarnos de que se quede en el centro de la pantalla */
+        top: 50%; /* Centramos verticalmente en la mitad de la pantalla */
+        left: 50%; /* Centramos horizontalmente en la mitad de la pantalla */
+        transform: translate(-50%, -50%); /* Desplazamos hacia arriba y hacia la izquierda para centrarlo completamente */
+        width: 70%; /* Tamaño razonable para el video-popup */
+        height: 70%; /* Tamaño razonable para el video-popup */
+        background: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .video-container {
+        position: relative; /* Cambiamos a position: relative para que no sea absoluto y herede la posición del video-popup */
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        width: 100%; 
+    }
+
+    #video-iframe {
+        position: absolute;
+        width: 100%; /* Ancho al 100% para que ocupe todo el espacio dentro del video-container */
+        height: 100%;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+        cursor: pointer;
+        font-size: 24px;
+    }
+
+    .image-tooltip {
+        display: none;
+        position: fixed;
+        background-color: #333;
+        color: #f0f0f0;
+        border: 2px solid #007bff;
+        padding: 10px;
+        width: 400px;
+        z-index: 2;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        pointer-events: none;
+        transition: opacity 0.5s;
+        border-radius: 20px;
+    }
+/* styles image, video-pop, tooltips */
+
+
+.flash-message {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    padding-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+.flash-message-error {
+    background-color: #dc3545;
+}
+
+.flash-message-success {
+    background-color: #28a745;
+}
+
+
+.rating-form {
+    text-align: center;
+    /*margin-top: 10px;*/
+    /* Ajusta el margen superior según tus necesidades */
+    display: inline-block; /* Para que el formulario tenga solo el ancho que necesita */
+    background-color: rgba(0, 0, 0, 0.4); /* Negro con 70% de transparencia */
+    /*padding: 15px; /* Espaciado interno para hacer más visible el contenido */
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+    border-bottom-left-radius: 10px; /* Ajusta según sea necesario */
+    border-bottom-right-radius: 10px; /* Ajusta según sea necesario */
+}
+
+.rating {
+    display: inline-block;
+}
+
+.clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    margin-right: 5px;
+    /* Espaciado entre las estrellas */
+}
+
+label {
+    font-size: 20px;
+    color: grey;
+    cursor: pointer;
+    /* Cambia el cursor al pasar sobre las estrellas */
+}
+
+label:hover,
+label:hover~label {
+    color: orange;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked~label {
+    color: orange;
+}
+
+/* Estilo para el rating promedio */
+.rating-form p {
+    font-size: 16px;
+    margin-top: 5px;
+    /* Ajusta el margen superior según tus necesidades */
+    color: white;
+    /* Cambia el color del texto a blanco */
+}
+
+.rating-form span {
+    display: inline-block;
+}
+
+.rating-form span:first-child {
+    margin-right: 5px;
+    /* Ajusta el margen entre "Ganas de verla:" y las estrellas */
+}
+
+.rating-form span:nth-child(2) {
+    margin-right: 5px;
+    /* Ajusta el margen entre las estrellas y el valor */
+}
