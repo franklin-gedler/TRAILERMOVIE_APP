@@ -126,6 +126,14 @@
     }
 /* styles image, video-pop, tooltips */
 
+label[for="floatingInput"],
+label[for="floatingTextarea2"] {
+    /* Estilos aquí */
+    font-size: 16px; /* Tamaño de texto */
+    background-color: rgba(255, 255, 255, 0.0); /* Fondo transparente */
+    /* Otros estilos que desees agregar */
+}
+
 
 .flash-message {
     text-align: center;
