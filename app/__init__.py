@@ -1,12 +1,12 @@
 """Flask app creation."""
 
 from flask import Flask
-from app.resources import inicio, peliculas, series, contactanos, login, admin, logout, health, search, rating
+#from app.resources import inicio, peliculas, series, contactanos, login, admin, logout, health, search, rating
 from config import Secrets
+from app.resources import ACTIVE_ENDPOINTS
 
-ACTIVE_ENDPOINTS = (inicio, peliculas, series, 
-                    contactanos, login, admin, logout, health, search, rating)
-
+#ACTIVE_ENDPOINTS = (inicio, peliculas, series, 
+#                    contactanos, login, admin, logout, health, search, rating)
 
 def create_app():
     """Create Flask app."""
