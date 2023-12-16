@@ -2,6 +2,8 @@
 
 Este proyecto es una aplicación web que permite a los usuarios explorar y ver trailers de películas. Utiliza el framework Flask para la construcción de la aplicación web.
 
+App Web: https://trailersmovie.onrender.com
+
 ## Funcionalidades
 
 - **Exploración de Películas**: Los usuarios pueden explorar una lista de películas disponibles y ver sus trailers.

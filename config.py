@@ -18,3 +18,5 @@ class Secrets:
     SECRET_KEY = os.getenv("SECRET_KEY")
 
     ID_TEMPLATE_COURIER = os.getenv("ID_TEMPLATE_COURIER")
+
+    BASE_URL_API = os.getenv("BASE_URL_API")

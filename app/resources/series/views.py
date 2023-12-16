@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, session
 from app.modules.db import Handler_DB, DataTransform
 
 series = Blueprint("series", __name__)
@@ -15,4 +15,4 @@ def main():
 
         return jsonify({'seriesData': series_data})
     
-    return render_template('series.html', title='Series')
+    return render_template('series.html', title='Series', current_user=session.get('current_user', None))

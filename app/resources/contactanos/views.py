@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from app.modules.form import Contactanos
 from app.modules.sendmail import SendEmail
 
@@ -26,4 +26,4 @@ def main():
         except Exception as err:
             flash(err, 'error')
 
-    return render_template('contactanos.html', title='Contactanos', form=form)
+    return render_template('contactanos.html', title='Contactanos', form=form, current_user=session.get('current_user', None))

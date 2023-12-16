@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, session
 from app.modules.db import Handler_DB, DataTransform
 
 peliculas = Blueprint("peliculas", __name__)
@@ -15,4 +15,4 @@ def main():
 
         return jsonify({'moviesData': peliculas_data})
     
-    return render_template('peliculas.html', title='Peliculas')
+    return render_template('peliculas.html', title='Peliculas', current_user=session.get('current_user', None))

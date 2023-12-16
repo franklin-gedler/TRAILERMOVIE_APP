@@ -1,5 +1,5 @@
 
-from flask import Blueprint, redirect, url_for, render_template, request, jsonify
+from flask import Blueprint, redirect, url_for, render_template, request, jsonify, session
 from app.modules.db import Handler_DB, DataTransform
 
 inicio = Blueprint("inicio", __name__)
@@ -25,4 +25,4 @@ def main():
 
         return jsonify({'moviesData': peliculas_data, 'seriesData': series_data})
 
-    return render_template('inicio.html', title='Página de Inicio')
+    return render_template('inicio.html', title='Página de Inicio', current_user=session.get('current_user', None))

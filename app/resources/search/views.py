@@ -1,5 +1,5 @@
 
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, session
 from app.modules.db import Handler_DB, DataTransform
 
 search = Blueprint("search", __name__)
@@ -22,4 +22,4 @@ def main():
 
 @search.route("/resultsearch")
 def resultsearch():
-    return render_template('search.html', title='Results')
+    return render_template('search.html', title='Results', current_user=session.get('current_user', None))

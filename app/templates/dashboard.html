@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 class="d-flex justify-content-center text-white">Bienvenido {{ current_user.capitalize() }}</h2>
+
+<div class="d-flex justify-content-center">
+    <div class="bg-dark p-5 w-50 rounded-3">
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Peliculas & Series
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        
+                        <div class="accordion" id="accordionPanelsStayOpenPeliculaSerie">
+                            
+                            {% if user_role != "1" %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne-PeliculaSerie" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne-PeliculaSerie">
+                                            ADD
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseOne-PeliculaSerie" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+                                            
+                                            <form method="POST" id="createFormPeliculaSerie">
+                                                {{ form.create_form_pelicula_serie.hidden_tag() }}
+
+                                                <input type="hidden" name="action" value="add_pelicula_serie">
+
+                                                <label for="video_id">Video ID:</label>
+                                                {{ form.create_form_pelicula_serie.video_id(class="form-control", id="video_id") }}<br>
+
+                                                <label for="link_img">Link de la imagen:</label>
+                                                {{ form.create_form_pelicula_serie.link_img(class="form-control", id="link_img") }}<br>
+
+                                                {{ form.create_form_pelicula_serie.name_type(class="form-control", id="name_type") }}
+                                                {{ form.create_form_pelicula_serie.name_type_input(class="form-control", id="name_type_input") }}<br>
+
+                                                <label for="details">Detalles:</label>
+                                                {{ form.create_form_pelicula_serie.details(class="form-control", id="details") }}<br>
+
+                                                <input type="submit" value="Agregar">
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo-PeliculaSerie" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo-PeliculaSerie">
+                                        GET
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseTwo-PeliculaSerie" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+
+                                        <form method="POST" id="getFormPeliculaSerie">
+                                            {{ form.get_form_pelicula_serie.hidden_tag() }}
+
+                                            <input type="hidden" name="action" value="get_pelicula_serie">
+                                        
+                                            <label for="name_pelicula_serie">Nombre Pelicula o Serie:</label>
+                                            {{ form.get_form_pelicula_serie.name_pelicula_serie(class="form-control", id="name_pelicula_serie") }}<br>
+                                        
+                                            <input type="submit" value="Obtener">
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% if user_role != "1" %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree-PeliculaSerie" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree-PeliculaSerie">
+                                            UPDATE
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseThree-PeliculaSerie" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+
+                                            <form method="POST" id="updateFormPeliculaSerie">
+                                                {{ form.update_form_pelicula_serie.hidden_tag() }}
+
+                                                <input type="hidden" name="action" value="update_pelicula_serie">
+
+                                                <label for="name_pelicula_serie">Nombre Pelicula o Serie:</label>
+                                                {{ form.update_form_pelicula_serie.name_pelicula_serie(class="form-control", id="name_pelicula_serie") }}<br>
+
+                                                <label for="video_id">Video ID:</label>
+                                                {{ form.update_form_pelicula_serie.video_id(class="form-control", id="video_id") }}<br>
+
+                                                <label for="link_img">Link de la imagen:</label>
+                                                {{ form.update_form_pelicula_serie.link_img(class="form-control", id="link_img") }}<br>
+
+                                                <label for="new_name">New name Pelicula o Serie:</label>
+                                                {{ form.update_form_pelicula_serie.new_name(class="form-control", id="new_name") }}<br>
+
+                                                <label for="details">Detalles:</label>
+                                                {{ form.update_form_pelicula_serie.details(class="form-control", id="details") }}<br>
+
+                                                <input type="submit" value="Actualizar">
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                            {% if user_role != "1" %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour-PeliculaSerie" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour-PeliculaSerie">
+                                            DELETE
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseFour-PeliculaSerie" class="accordion-collapse collapse">
+                                        <div class="accordion-body">
+
+                                            <form method="POST" id="deleteFormPeliculaSerie">
+                                                {{ form.delete_form_pelicula_serie.hidden_tag() }}
+    
+                                                <input type="hidden" name="action" value="delete_pelicula_serie">
+
+                                                <label for="name_type">Tipo:</label>
+                                                {{ form.delete_form_pelicula_serie.name_type(class="form-control", id="name_type") }}<br>
+                                                {{ form.delete_form_pelicula_serie.name_type_input(class="form-control", id="name_type_input") }}<br>
+                                            
+                                                <input type="submit" value="Obtener">
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        User
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                        <div class="accordion" id="accordionPanelsStayOpenUser">
+
+                            {% if user_role != "1" %}
+                                {% if current_user == "admin" %}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne-User" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne-User">
+                                                ADD
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-collapseOne-User" class="accordion-collapse collapse">
+                                            <div class="accordion-body">
+
+                                                <form method="POST" id="createFormUser">
+                                                    {{ form.create_form_user.hidden_tag() }}
+    
+                                                    <input type="hidden" name="action" value="add_user">
+    
+                                                    <label for="username">Username:</label>
+                                                    {{ form.create_form_user.username(class="form-control", id="username") }}<br>
+    
+                                                    <label for="password">Password:</label>
+                                                    {{ form.create_form_user.password(class="form-control", id="password") }}<br>
+    
+                                                    <!-- <label for="allow">Allow:</label>
+                                                    {{ form.create_form_user.allow(class="form-control", id="allow") }}<br> -->
+
+                                                    <label for="allow">Allow:</label>
+                                                    {{ form.create_form_user.allow(class="form-control", id="allow") }}<br>
+    
+                                                    <input type="submit" value="Agregar">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo-User" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo-User">
+                                        GET
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseTwo-User" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        
+                                        <form method="POST" id="getFormUser">
+                                            {{ form.get_form_user.hidden_tag() }}
+
+                                            <input type="hidden" name="action" value="get_user">
+                                        
+                                            <label for="username">Username:</label>
+                                            {{ form.get_form_user.username(class="form-control", id="username") }}<br>
+                                        
+                                            <input type="submit" value="Obtener">
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {% if user_role != "1" %}
+                                {% if current_user == "admin" %}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree-User" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree-User">
+                                                UPDATE
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-collapseThree-User" class="accordion-collapse collapse">
+                                            <div class="accordion-body">
+                                                
+                                                <form method="POST" id="updateFormUser">
+                                                    {{ form.update_form_user.hidden_tag() }}
+        
+                                                    <input type="hidden" name="action" value="update_user">
+                                                
+                                                    <label for="user">Username:</label>
+                                                    {{ form.update_form_user.user(class="form-control", id="user") }}<br>
+
+                                                    <label for="username">Nuevo Nombre:</label>
+                                                    {{ form.update_form_user.username(class="form-control", id="username") }}<br>
+
+                                                    <label for="password">Nueva Password:</label>
+                                                    {{ form.update_form_user.password(class="form-control", id="password") }}<br>
+
+                                                    <label for="allow">Nuevo Allow:</label>
+                                                    {{ form.update_form_user.allow(class="form-control", id="allow") }}<br>
+                                                    
+                                                    <input type="submit" value="Actualizar">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+
+                            {% if user_role != "1" %}
+                                {% if current_user == "admin" %}
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour-User" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour-User">
+                                                DELETE
+                                            </button>
+                                        </h2>
+                                        <div id="panelsStayOpen-collapseFour-User" class="accordion-collapse collapse">
+                                            <div class="accordion-body">
+                                                
+                                                <form method="POST" id="deleteFormUser">
+                                                    {{ form.delete_form_user.hidden_tag() }}
+        
+                                                    <input type="hidden" name="action" value="delete_user">
+                                                
+                                                    <label for="username">Username:</label>
+                                                    {{ form.delete_form_user.user(class="form-control", id="user") }}<br>
+                                                    
+                                                    <input type="submit" value="Eliminar">
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="flash-message-{{ category }}">
+                    {% for category, message in messages %}
+                    <div class="flash-message flash-message-{{ category }}">
+                        {{ message }}
+                    </div> 
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+            {% if pelicula_serie_info %}
+                <!-- <div class="bg-dark p-4 w-50 rounded-3"> -->
+                <div class="text-white">
+                    <!-- <h3>Información de la Película o Serie</h3> -->
+                    <h3>
+                        Información de la {% if 'name_pelicula' in pelicula_serie_info %} Película {% else %} Serie {% endif %}
+                    </h3>
+                    <p><strong>ID:</strong> {{ pelicula_serie_info.id }}</p>
+                    <p><strong>Video ID:</strong> {{ pelicula_serie_info.video_id }}</p>
+                    <p><strong>Link de la imagen:</strong> {{ pelicula_serie_info.link_img }} </p>
+                    <p></p><img src="{{ pelicula_serie_info.link_img }}" alt="{{ pelicula_serie_info.name_pelicula }}" class="img-fluid"></p>
+                    <!-- <p><strong>Nombre:</strong> {{ pelicula_serie_info.name_pelicula }}</p> -->
+                    <p><strong>Nombre:</strong> 
+                        {% if 'name_pelicula' in pelicula_serie_info %}
+                            {{ pelicula_serie_info.name_pelicula }}
+                        {% elif 'name_serie' in pelicula_serie_info %}
+                            {{ pelicula_serie_info.name_serie }}
+                        {% endif %}
+                    </p>
+                    <p><strong>Detalles:</strong> {{ pelicula_serie_info.details }}</p>
+                    <p><strong>Fecha de creación:</strong> {{ pelicula_serie_info.created_at }}</p>
+                    <p><strong>Ranking:</strong> {{ pelicula_serie_info.total_average }}</p>
+                    <p><strong>Cantidad de votos:</strong> {{ pelicula_serie_info.vote_count }}</p>
+                    <!-- Puedes agregar más campos según sea necesario -->
+                </div>
+            {% elif user_info %}
+                <div class="text-white">
+                    <h3>Información del Usuario</h3>
+                    <p><strong>ID:</strong> {{ user_info.id }}</p>
+                    <p><strong>Username:</strong> {{ user_info.username }}</p>
+                    <p><strong>Allow:</strong> {{ user_info.user_permissions[0].permission_id }}</p>
+                    <p><strong>Fecha de creación:</strong> {{ user_info.created_at }}</p>
+                    <p><strong>Fecha de actualización:</strong> {{ user_info.updated_at }}</p>
+                    <!-- Puedes agregar más campos según sea necesario -->
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock %}
